@@ -1,16 +1,24 @@
 package platform.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import platform.util.DateFormatter;
 
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
 public class CodeSnippet {
 
-    private final String code;
+    private String code =
+            """
+            public class Main {
+                public static void main(String[] args) {
+                    System.out.println("Hello World!");
+                }
+            }
+            """;
 
-    public CodeSnippet(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
-    }
+    private String date = DateFormatter.formatWithPattern(LocalDateTime.now());
 
 }

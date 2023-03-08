@@ -4,21 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import platform.domain.CodeSnippetResponseDTO;
-import platform.service.ApiService;
+import platform.service.CodeSharingApiService;
 
 @RestController
-public class ApiController {
+@RequestMapping("/api")
+public class CodeSharingApiController {
 
-    private final ApiService apiService;
+    private final CodeSharingApiService apiService;
 
     @Autowired
-    public ApiController(ApiService apiService) {
+    public CodeSharingApiController(CodeSharingApiService apiService) {
         this.apiService = apiService;
     }
 
-    @GetMapping("/api/code")
+    @GetMapping("/code")
     public ResponseEntity<CodeSnippetResponseDTO> getCode() {
         CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet();
 

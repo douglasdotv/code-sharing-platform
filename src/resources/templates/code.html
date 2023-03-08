@@ -3,8 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        pre {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 20px;
+            max-width: 80%;
+        }
+        #load_date {
+            color: darkblue;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
-<pre th:text="${codeSnippet}"></pre>
+<span id="load_date" th:text="${date}"></span>
+<pre id="code_snippet" th:text="${codeSnippet}"></pre>
 </body>
 </html>
