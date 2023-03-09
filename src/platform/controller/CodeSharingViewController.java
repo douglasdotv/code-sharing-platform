@@ -33,4 +33,16 @@ public class CodeSharingViewController {
         return new ModelAndView("code", model);
     }
 
+    @GetMapping("/code/new")
+    public ModelAndView getNewCode() {
+        Map<String, Object> model = new HashMap<>();
+        model.put("title", "Create");
+        return new ModelAndView("newcode", model);
+    }
+
+    @GetMapping("/")
+    public ModelAndView getIndex() {
+        return new ModelAndView("index");
+    }
+
 }

@@ -21,4 +21,9 @@ public class CodeSnippet {
 
     private String date = DateFormatter.formatWithPattern(LocalDateTime.now());
 
+    public void update(String code) {
+        this.setCode(code);
+        this.setDate(DateFormatter.formatWithPattern(LocalDateTime.now()));
+    }
+
 }
