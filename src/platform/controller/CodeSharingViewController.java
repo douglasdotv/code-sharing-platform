@@ -1,16 +1,16 @@
 package platform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-import platform.domain.CodeSnippetViewDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import platform.domain.dto.view.CodeSnippetViewDTO;
 import platform.service.CodeSharingViewService;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Controller
+@RequestMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
 public class CodeSharingViewController {
 
     private final CodeSharingViewService viewService;
@@ -21,28 +21,24 @@ public class CodeSharingViewController {
     }
 
     @GetMapping("/code")
-    public ModelAndView getCode() {
-        CodeSnippetViewDTO codeSnippetInfo = viewService.getCodeSnippet();
+    public String getCode(Model model) {
+        CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet();
 
-        Map<String, Object> model = new HashMap<>();
-        model.put("title", "Code");
-        model.put("codeSnippet", codeSnippetInfo.code());
-        model.put("date", codeSnippetInfo.date());
+        model.addAttribute("title", "Code");
+        model.addAttribute("codeSnippet", codeSnippet);
 
-        // When dealing with a ModelAndView object, the Content-Type header is set to text/html by default.
-        return new ModelAndView("code", model);
+        return "code";
     }
 
     @GetMapping("/code/new")
-    public ModelAndView getNewCode() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("title", "Create");
-        return new ModelAndView("newcode", model);
+    public String getNewCode(Model model) {
+        model.addAttribute("title", "Create");
+        return "newcode";
     }
 
-    @GetMapping("/")
-    public ModelAndView getIndex() {
-        return new ModelAndView("index");
+    @GetMapping("")
+    public String getIndex() {
+        return "index";
     }
 
 }

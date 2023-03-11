@@ -1,6 +1,6 @@
 package platform.service;
 
-import platform.domain.CodeSnippetViewDTO;
+import platform.domain.dto.view.CodeSnippetViewDTO;
 
 public interface CodeSharingViewService {
 

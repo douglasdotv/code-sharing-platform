@@ -2,9 +2,9 @@ package platform.service;
 
 import org.springframework.stereotype.Service;
 import platform.domain.CodeSnippet;
-import platform.domain.CodeSnippetResponseDTO;
-import platform.domain.NewCodeSnippetDTO;
-import platform.domain.NewCodeSnippetResponseDTO;
+import platform.domain.dto.api.CodeSnippetResponseDTO;
+import platform.domain.dto.api.NewCodeSnippetDTO;
+import platform.domain.dto.api.NewCodeSnippetResponseDTO;
 
 
 @Service

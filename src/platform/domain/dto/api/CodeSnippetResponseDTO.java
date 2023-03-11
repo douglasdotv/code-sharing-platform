@@ -1,4 +1,6 @@
-package platform.domain;
+package platform.domain.dto.api;
+
+import platform.domain.CodeSnippet;
 
 public record CodeSnippetResponseDTO(String code, String date) {
 

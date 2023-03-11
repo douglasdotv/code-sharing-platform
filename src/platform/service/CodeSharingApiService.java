@@ -1,8 +1,8 @@
 package platform.service;
 
-import platform.domain.CodeSnippetResponseDTO;
-import platform.domain.NewCodeSnippetDTO;
-import platform.domain.NewCodeSnippetResponseDTO;
+import platform.domain.dto.api.CodeSnippetResponseDTO;
+import platform.domain.dto.api.NewCodeSnippetDTO;
+import platform.domain.dto.api.NewCodeSnippetResponseDTO;
 
 public interface CodeSharingApiService {
 

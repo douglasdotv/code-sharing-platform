@@ -2,8 +2,8 @@ package platform.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import platform.domain.CodeSnippetResponseDTO;
-import platform.domain.CodeSnippetViewDTO;
+import platform.domain.dto.api.CodeSnippetResponseDTO;
+import platform.domain.dto.view.CodeSnippetViewDTO;
 
 @Service
 public class CodeSharingViewServiceImpl implements CodeSharingViewService {
