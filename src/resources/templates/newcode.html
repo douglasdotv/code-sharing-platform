@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${title}"></title>
+    <title th:text="${title}"></title>]
 </head>
 <body>
 <form action="/api/code/new" method="post">
@@ -21,12 +21,12 @@
         let json = JSON.stringify(object);
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", '/api/code/new', false)
+        xhr.open("POST", '/api/code/new', false);
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.send(json);
 
         if (xhr.status === 200) {
-            alert("Code successfully updated.");
+            alert("Success!");
         }
     }
 </script>

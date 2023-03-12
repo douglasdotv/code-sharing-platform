@@ -9,6 +9,8 @@ import platform.domain.dto.api.NewCodeSnippetDTO;
 import platform.domain.dto.api.NewCodeSnippetResponseDTO;
 import platform.service.CodeSharingApiService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CodeSharingApiController {
@@ -20,18 +22,22 @@ public class CodeSharingApiController {
         this.apiService = apiService;
     }
 
-    @GetMapping("/code")
-    public ResponseEntity<CodeSnippetResponseDTO> getCode() {
-        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet();
-
+    @GetMapping("/code/{id}")
+    public ResponseEntity<CodeSnippetResponseDTO> getCode(@PathVariable String id) {
+        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
         return ResponseEntity.ok().body(codeSnippet);
     }
 
     @PostMapping("/code/new")
     public ResponseEntity<NewCodeSnippetResponseDTO> postCode(@RequestBody NewCodeSnippetDTO newCodeSnippet) {
-        NewCodeSnippetResponseDTO codeSnippet = apiService.updateCodeSnippet(newCodeSnippet);
-
+        NewCodeSnippetResponseDTO codeSnippet = apiService.addCodeSnippet(newCodeSnippet);
         return ResponseEntity.ok().body(codeSnippet);
+    }
+
+    @GetMapping("/code/latest")
+    public ResponseEntity<List<CodeSnippetResponseDTO>> getLatestCodeSnippets() {
+        List<CodeSnippetResponseDTO> codeSnippets = apiService.getLatestCodeSnippets();
+        return ResponseEntity.ok().body(codeSnippets);
     }
 
 }

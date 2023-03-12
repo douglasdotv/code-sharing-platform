@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import platform.domain.dto.api.CodeSnippetResponseDTO;
 import platform.domain.dto.view.CodeSnippetViewDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CodeSharingViewServiceImpl implements CodeSharingViewService {
 
@@ -15,9 +18,24 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
         this.apiService = apiService;
     }
 
-    public CodeSnippetViewDTO getCodeSnippet() {
-        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet();
+    public CodeSnippetViewDTO getCodeSnippet(String id) {
+        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
         return new CodeSnippetViewDTO(codeSnippet);
+    }
+
+    public List<CodeSnippetViewDTO> getLatestCodeSnippets() {
+        List<CodeSnippetResponseDTO> codeSnippets = apiService.getLatestCodeSnippets();
+        return mapCodeSnippetsToViewDtos(codeSnippets);
+    }
+
+    private List<CodeSnippetViewDTO> mapCodeSnippetsToViewDtos
+            (List<CodeSnippetResponseDTO> codeSnippetsAsResponseDtos) {
+
+        List<CodeSnippetViewDTO> codeSnippetsAsViewDtos = new ArrayList<>();
+        for (CodeSnippetResponseDTO codeSnippetAsResponseDto : codeSnippetsAsResponseDtos) {
+            codeSnippetsAsViewDtos.add(new CodeSnippetViewDTO(codeSnippetAsResponseDto));
+        }
+        return codeSnippetsAsViewDtos;
     }
 
 }

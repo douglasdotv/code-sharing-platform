@@ -5,9 +5,12 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import platform.domain.dto.view.CodeSnippetViewDTO;
 import platform.service.CodeSharingViewService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
@@ -20,9 +23,9 @@ public class CodeSharingViewController {
         this.viewService = viewService;
     }
 
-    @GetMapping("/code")
-    public String getCode(Model model) {
-        CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet();
+    @GetMapping("/code/{id}")
+    public String getCode(Model model, @PathVariable String id) {
+        CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet(id);
 
         model.addAttribute("title", "Code");
         model.addAttribute("codeSnippet", codeSnippet);
@@ -34,6 +37,16 @@ public class CodeSharingViewController {
     public String getNewCode(Model model) {
         model.addAttribute("title", "Create");
         return "newcode";
+    }
+
+    @GetMapping("/code/latest")
+    public String getLatestCodeSnippets(Model model) {
+        List<CodeSnippetViewDTO> codeSnippetList = viewService.getLatestCodeSnippets();
+
+        model.addAttribute("title", "Latest");
+        model.addAttribute("codeSnippetList", codeSnippetList);
+
+        return "latest";
     }
 
     @GetMapping("")

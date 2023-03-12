@@ -1,4 +1,11 @@
 package platform.domain.dto.api;
 
-public record NewCodeSnippetResponseDTO() {
+import platform.domain.CodeSnippet;
+
+public record NewCodeSnippetResponseDTO(String id) {
+
+    public NewCodeSnippetResponseDTO(CodeSnippet codeSnippet) {
+        this(codeSnippet.getId());
+    }
+
 }
