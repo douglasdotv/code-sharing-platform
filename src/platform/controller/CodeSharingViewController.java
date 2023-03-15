@@ -24,7 +24,7 @@ public class CodeSharingViewController {
     }
 
     @GetMapping("/code/{id}")
-    public String getCode(Model model, @PathVariable String id) {
+    public String getCode(Model model, @PathVariable Long id) {
         CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet(id);
 
         model.addAttribute("title", "Code");

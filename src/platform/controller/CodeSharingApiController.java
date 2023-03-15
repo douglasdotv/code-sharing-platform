@@ -23,7 +23,7 @@ public class CodeSharingApiController {
     }
 
     @GetMapping("/code/{id}")
-    public ResponseEntity<CodeSnippetResponseDTO> getCode(@PathVariable String id) {
+    public ResponseEntity<CodeSnippetResponseDTO> getCode(@PathVariable Long id) {
         CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
         return ResponseEntity.ok().body(codeSnippet);
     }

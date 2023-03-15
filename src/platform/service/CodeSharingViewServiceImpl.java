@@ -18,7 +18,7 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
         this.apiService = apiService;
     }
 
-    public CodeSnippetViewDTO getCodeSnippet(String id) {
+    public CodeSnippetViewDTO getCodeSnippet(Long id) {
         CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
         return new CodeSnippetViewDTO(codeSnippet);
     }
@@ -30,7 +30,6 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
 
     private List<CodeSnippetViewDTO> mapCodeSnippetsToViewDtos
             (List<CodeSnippetResponseDTO> codeSnippetsAsResponseDtos) {
-
         List<CodeSnippetViewDTO> codeSnippetsAsViewDtos = new ArrayList<>();
         for (CodeSnippetResponseDTO codeSnippetAsResponseDto : codeSnippetsAsResponseDtos) {
             codeSnippetsAsViewDtos.add(new CodeSnippetViewDTO(codeSnippetAsResponseDto));

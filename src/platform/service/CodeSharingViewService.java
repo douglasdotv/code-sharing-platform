@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CodeSharingViewService {
 
-    CodeSnippetViewDTO getCodeSnippet(String id);
+    CodeSnippetViewDTO getCodeSnippet(Long id);
 
     List<CodeSnippetViewDTO> getLatestCodeSnippets();
 

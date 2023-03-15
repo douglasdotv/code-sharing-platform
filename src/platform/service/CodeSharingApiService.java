@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CodeSharingApiService {
 
-    CodeSnippetResponseDTO getCodeSnippet(String id);
+    CodeSnippetResponseDTO getCodeSnippet(Long id);
 
     NewCodeSnippetResponseDTO addCodeSnippet(NewCodeSnippetDTO codeSnippet);
 
