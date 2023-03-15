@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" async></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
     <style>
         body {
             background-color: #f8f8f8;
@@ -31,6 +37,6 @@
 </head>
 <body>
 <span id="load_date" th:text="${codeSnippet.date}"></span>
-<pre id="code_snippet" th:text="${codeSnippet.code}"></pre>
+<pre id="code_snippet"><code th:text="${codeSnippet.code}"></code></pre>
 </body>
 </html>
