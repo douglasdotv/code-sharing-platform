@@ -7,6 +7,7 @@ import platform.domain.dto.view.CodeSnippetViewDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CodeSharingViewServiceImpl implements CodeSharingViewService {
@@ -18,8 +19,8 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
         this.apiService = apiService;
     }
 
-    public CodeSnippetViewDTO getCodeSnippet(Long id) {
-        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
+    public CodeSnippetViewDTO getCodeSnippet(UUID uuid) {
+        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(uuid);
         return new CodeSnippetViewDTO(codeSnippet);
     }
 

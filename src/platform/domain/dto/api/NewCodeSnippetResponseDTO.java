@@ -2,10 +2,12 @@ package platform.domain.dto.api;
 
 import platform.domain.CodeSnippet;
 
-public record NewCodeSnippetResponseDTO(String id) {
+import java.util.UUID;
+
+public record NewCodeSnippetResponseDTO(UUID id) {
 
     public NewCodeSnippetResponseDTO(CodeSnippet codeSnippet) {
-        this(codeSnippet.getId().toString());
+        this(codeSnippet.getUuid());
     }
 
 }

@@ -10,7 +10,7 @@ import platform.repository.CodeSnippetRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 
 @Service
 public class CodeSharingApiServiceImpl implements CodeSharingApiService {
@@ -22,9 +22,9 @@ public class CodeSharingApiServiceImpl implements CodeSharingApiService {
         this.repository = repository;
     }
 
-    public CodeSnippetResponseDTO getCodeSnippet(Long id) {
-        CodeSnippet codeSnippet = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Code with id " + id + " not found."));
+    public CodeSnippetResponseDTO getCodeSnippet(UUID uuid) {
+        CodeSnippet codeSnippet = repository.findById(uuid)
+                .orElseThrow(() -> new IllegalArgumentException("Code with id " + uuid + " not found."));
         return new CodeSnippetResponseDTO(codeSnippet);
     }
 

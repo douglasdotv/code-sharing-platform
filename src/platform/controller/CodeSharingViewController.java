@@ -11,6 +11,7 @@ import platform.domain.dto.view.CodeSnippetViewDTO;
 import platform.service.CodeSharingViewService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
@@ -23,9 +24,9 @@ public class CodeSharingViewController {
         this.viewService = viewService;
     }
 
-    @GetMapping("/code/{id}")
-    public String getCode(Model model, @PathVariable Long id) {
-        CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet(id);
+    @GetMapping("/code/{uuid}")
+    public String getCode(Model model, @PathVariable UUID uuid) {
+        CodeSnippetViewDTO codeSnippet = viewService.getCodeSnippet(uuid);
 
         model.addAttribute("title", "Code");
         model.addAttribute("codeSnippet", codeSnippet);

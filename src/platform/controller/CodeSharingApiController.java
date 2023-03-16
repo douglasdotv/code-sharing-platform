@@ -10,6 +10,7 @@ import platform.domain.dto.api.NewCodeSnippetResponseDTO;
 import platform.service.CodeSharingApiService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -22,9 +23,9 @@ public class CodeSharingApiController {
         this.apiService = apiService;
     }
 
-    @GetMapping("/code/{id}")
-    public ResponseEntity<CodeSnippetResponseDTO> getCode(@PathVariable Long id) {
-        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(id);
+    @GetMapping("/code/{uuid}")
+    public ResponseEntity<CodeSnippetResponseDTO> getCode(@PathVariable UUID uuid) {
+        CodeSnippetResponseDTO codeSnippet = apiService.getCodeSnippet(uuid);
         return ResponseEntity.ok().body(codeSnippet);
     }
 
