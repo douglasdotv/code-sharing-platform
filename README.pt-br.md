@@ -3,14 +3,14 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/douglasdotv/code-sharing-platform/blob/master/README.md)
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/douglasdotv/code-sharing-platform/blob/master/README.pt-br.md)
 
-### About
+### Descrição
 
-This is a web application that allows users to share code snippets with each other.
+Esta é uma aplicação web que permite que os usuários compartilhem trechos de código com outros desenvolvedores.
 
-### Project stages
+### Etapas do projeto
 
 <details open="open">
-  <summary>Stages</summary>
+  <summary>Etapas</summary>
   <ol>
   <li><a href="https://hyperskill.org/projects/130/stages/692/implement">Show the code!</a></li>
   <li><a href="https://hyperskill.org/projects/130/stages/693/implement">POST updates</a></li>
@@ -20,7 +20,7 @@ This is a web application that allows users to share code snippets with each oth
   </ol>
 </details>
 
-### Tools used
+### Ferramentas utilizadas
 
 * Java 17
 * Gradle
@@ -31,10 +31,10 @@ This is a web application that allows users to share code snippets with each oth
 * Thymeleaf
 * highlight.js
 
-### Contributions
+### Contribuições
 
-If you have any suggestions, feel free to open an issue or pull request.
+Se você tiver alguma sugestão, sinta-se à vontade para abrir uma issue ou pull request.
 
-### Contact info
+### Contato
 
-If you have any questions, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/douglasdotv/).
+Se houver alguma dúvida, sinta-se à vontade para entrar em contato comigo através do [LinkedIn](https://www.linkedin.com/in/douglasdotv/).
