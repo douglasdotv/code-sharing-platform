@@ -50,9 +50,4 @@ public class CodeSharingViewController {
         return "newcode";
     }
 
-    @GetMapping("")
-    public String getIndex() {
-        return "index";
-    }
-
 }
