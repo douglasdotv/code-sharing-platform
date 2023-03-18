@@ -14,6 +14,7 @@
             background-color: #f8f8f8;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
+
         pre {
             background-color: #fff;
             border: 1px solid #ddd;
@@ -28,6 +29,7 @@
             margin: 20px;
             max-width: 80%;
         }
+
         #load_date {
             color: darkblue;
             font-size: 14px;
@@ -37,6 +39,15 @@
 </head>
 <body>
 <span id="load_date" th:text="${codeSnippet.date}"></span>
+<br>
+<span id="views_restriction">
+    <u th:text="${codeSnippet.remainingViews}"></u> more views allowed.
+</span>
+<br>
+<span id="time_restriction">
+    The code will be available for
+    <u th:text="${codeSnippet.remainingTime}"></u> seconds.
+</span>
 <pre id="code_snippet"><code th:text="${codeSnippet.code}"></code></pre>
 </body>
 </html>

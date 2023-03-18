@@ -14,4 +14,8 @@ public final class DateFormatter {
         return date.format(formatter);
     }
 
+    public static LocalDateTime parseWithPattern(String date) {
+        return LocalDateTime.parse(date, formatter);
+    }
+
 }

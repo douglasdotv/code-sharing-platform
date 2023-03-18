@@ -29,16 +29,16 @@ public class CodeSharingApiController {
         return ResponseEntity.ok().body(codeSnippet);
     }
 
-    @PostMapping("/code/new")
-    public ResponseEntity<NewCodeSnippetResponseDTO> postCode(@RequestBody NewCodeSnippetDTO newCodeSnippet) {
-        NewCodeSnippetResponseDTO codeSnippet = apiService.addCodeSnippet(newCodeSnippet);
-        return ResponseEntity.ok().body(codeSnippet);
-    }
-
     @GetMapping("/code/latest")
     public ResponseEntity<List<CodeSnippetResponseDTO>> getLatestCodeSnippets() {
         List<CodeSnippetResponseDTO> codeSnippets = apiService.getLatestCodeSnippets();
         return ResponseEntity.ok().body(codeSnippets);
+    }
+
+    @PostMapping("/code/new")
+    public ResponseEntity<NewCodeSnippetResponseDTO> postCode(@RequestBody NewCodeSnippetDTO newCodeSnippet) {
+        NewCodeSnippetResponseDTO codeSnippet = apiService.addCodeSnippet(newCodeSnippet);
+        return ResponseEntity.ok().body(codeSnippet);
     }
 
 }

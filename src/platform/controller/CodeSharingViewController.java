@@ -34,12 +34,6 @@ public class CodeSharingViewController {
         return "code";
     }
 
-    @GetMapping("/code/new")
-    public String getNewCode(Model model) {
-        model.addAttribute("title", "Create");
-        return "newcode";
-    }
-
     @GetMapping("/code/latest")
     public String getLatestCodeSnippets(Model model) {
         List<CodeSnippetViewDTO> codeSnippetList = viewService.getLatestCodeSnippets();
@@ -48,6 +42,12 @@ public class CodeSharingViewController {
         model.addAttribute("codeSnippetList", codeSnippetList);
 
         return "latest";
+    }
+
+    @GetMapping("/code/new")
+    public String getNewCode(Model model) {
+        model.addAttribute("title", "Create");
+        return "newcode";
     }
 
     @GetMapping("")
