@@ -12,8 +12,14 @@ public class CodeSharingControllerAdvice {
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleThatPlease(EntityNotFoundException e) {
-        return e.getMessage();
+    public String handleEntityNotFoundException(EntityNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(CodeSharingPlatformException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleCodeSharingPlatformException(CodeSharingPlatformException ex) {
+        return ex.getMessage();
     }
 
 }

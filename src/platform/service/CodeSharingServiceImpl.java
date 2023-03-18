@@ -3,7 +3,10 @@ package platform.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import platform.domain.CodeSnippet;
-import platform.domain.dto.view.CodeSnippetViewDTO;
+import platform.domain.dto.CodeSnippetDTO;
+import platform.domain.dto.NewCodeSnippetRequestDTO;
+import platform.domain.dto.NewCodeSnippetResponseDTO;
+import platform.exceptionhandling.CodeSharingPlatformException;
 import platform.repository.CodeSnippetRepository;
 
 import javax.persistence.EntityNotFoundException;
@@ -12,45 +15,52 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class CodeSharingViewServiceImpl implements CodeSharingViewService {
+public class CodeSharingServiceImpl implements CodeSharingService {
 
     private final CodeSnippetRepository repository;
 
     @Autowired
-    public CodeSharingViewServiceImpl(CodeSnippetRepository repository) {
+    public CodeSharingServiceImpl(CodeSnippetRepository repository) {
         this.repository = repository;
     }
 
-    public CodeSnippetViewDTO getCodeSnippet(UUID uuid) {
+    public CodeSnippetDTO getCodeSnippet(UUID uuid) {
         CodeSnippet codeSnippet = repository.findById(uuid)
                 .orElseThrow(() -> new EntityNotFoundException("Code " + uuid + " not found."));
 
-        updateViewsCount(codeSnippet);
-
-        codeSnippet.updateRemainingTimeAndViews();
-
-        boolean isExpiredOrReachedMaxViewsLimit = false;
         if (codeSnippet.isRestricted()) {
-            isExpiredOrReachedMaxViewsLimit = checkCodeSnippetTimeAndViews(codeSnippet);
+            updateViewsCount(codeSnippet);
+            validateCodeSnippet(codeSnippet);
         }
 
-        if (isExpiredOrReachedMaxViewsLimit) {
-            throw new EntityNotFoundException("Code " + codeSnippet.getUuid() + " not found.");
-        }
-
-        return new CodeSnippetViewDTO(codeSnippet);
+        return new CodeSnippetDTO(codeSnippet);
     }
 
-    public List<CodeSnippetViewDTO> getLatestCodeSnippets() {
+    public NewCodeSnippetResponseDTO addCodeSnippet(NewCodeSnippetRequestDTO newCodeSnippet) {
+        CodeSnippet codeSnippet = new CodeSnippet(newCodeSnippet);
+        repository.save(codeSnippet);
+        return new NewCodeSnippetResponseDTO(codeSnippet);
+    }
+
+    public List<CodeSnippetDTO> getLatestCodeSnippets() {
         List<CodeSnippet> allCodeSnippets = repository.findAll();
         List<CodeSnippet> filteredCodeSnippets = filterCodeSnippets(allCodeSnippets);
 
         if (filteredCodeSnippets.isEmpty()) {
-            throw new EntityNotFoundException("No code snippets found.");
+            throw new CodeSharingPlatformException("No code snippets found.");
         }
 
         List<CodeSnippet> tenLatestCodeSnippets = getTenLatestCodeSnippets(filteredCodeSnippets);
-        return mapCodeSnippetsToViewDTOs(tenLatestCodeSnippets);
+        return mapCodeSnippetsToJsonDTOs(tenLatestCodeSnippets);
+    }
+
+    private void validateCodeSnippet(CodeSnippet codeSnippet) {
+        codeSnippet.updateRemainingTimeAndViews();
+
+        boolean isExpiredOrReachedMaxViewsLimit = checkCodeSnippetTimeAndViews(codeSnippet);
+        if (isExpiredOrReachedMaxViewsLimit) {
+            throw new CodeSharingPlatformException("Code" + codeSnippet.getUuid() + " not found.");
+        }
     }
 
     private boolean checkCodeSnippetTimeAndViews(CodeSnippet codeSnippet) {
@@ -77,22 +87,22 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
     }
 
     private List<CodeSnippet> getTenLatestCodeSnippets(List<CodeSnippet> allCodeSnippets) {
-        List<CodeSnippet> tenLatestCodeSnippets = new ArrayList<>();
+        List<CodeSnippet> latestCodeSnippets = new ArrayList<>();
         for (int i = allCodeSnippets.size() - 1; i >= 0; i--) {
-            if (tenLatestCodeSnippets.size() == 10) {
+            latestCodeSnippets.add(allCodeSnippets.get(i));
+            if (latestCodeSnippets.size() == 10) {
                 break;
             }
-            tenLatestCodeSnippets.add(allCodeSnippets.get(i));
         }
-        return tenLatestCodeSnippets;
+        return latestCodeSnippets;
     }
 
-    private List<CodeSnippetViewDTO> mapCodeSnippetsToViewDTOs(List<CodeSnippet> codeSnippets) {
-        List<CodeSnippetViewDTO> codeSnippetViewDTOs = new ArrayList<>();
+    private List<CodeSnippetDTO> mapCodeSnippetsToJsonDTOs(List<CodeSnippet> codeSnippets) {
+        List<CodeSnippetDTO> codeSnippetsAsDTOs = new ArrayList<>();
         for (CodeSnippet codeSnippet : codeSnippets) {
-            codeSnippetViewDTOs.add(new CodeSnippetViewDTO(codeSnippet));
+            codeSnippetsAsDTOs.add(new CodeSnippetDTO(codeSnippet));
         }
-        return codeSnippetViewDTOs;
+        return codeSnippetsAsDTOs;
     }
 
 }

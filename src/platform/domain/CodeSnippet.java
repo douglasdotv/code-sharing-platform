@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
-import platform.domain.dto.api.NewCodeSnippetDTO;
+import platform.domain.dto.NewCodeSnippetRequestDTO;
 import platform.util.DateFormatter;
 
 import javax.persistence.*;
@@ -57,7 +57,7 @@ public class CodeSnippet {
     @Column(name = "restricted")
     private boolean isRestricted;
 
-    public CodeSnippet(NewCodeSnippetDTO codeSnippet) {
+    public CodeSnippet(NewCodeSnippetRequestDTO codeSnippet) {
         this.code = codeSnippet.code();
         this.creationDate = DateFormatter.formatWithPattern(LocalDateTime.now());
 

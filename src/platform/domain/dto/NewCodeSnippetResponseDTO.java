@@ -1,4 +1,4 @@
-package platform.domain.dto.api;
+package platform.domain.dto;
 
 import platform.domain.CodeSnippet;
 
