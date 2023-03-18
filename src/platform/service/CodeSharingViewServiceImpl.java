@@ -43,15 +43,14 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
 
     public List<CodeSnippetViewDTO> getLatestCodeSnippets() {
         List<CodeSnippet> allCodeSnippets = repository.findAll();
-        List<CodeSnippet> validCodeSnippets = checkCodeSnippetsTimeAndViews(allCodeSnippets);
+        List<CodeSnippet> filteredCodeSnippets = filterCodeSnippets(allCodeSnippets);
 
-        if (validCodeSnippets.isEmpty()) {
-            throw new EntityNotFoundException("No valid code snippets found.");
+        if (filteredCodeSnippets.isEmpty()) {
+            throw new EntityNotFoundException("No code snippets found.");
         }
 
-        List<CodeSnippet> tenLatestValidCodeSnippets = getTenLatestCodeSnippets(validCodeSnippets);
-
-        return mapCodeSnippetsToViewDTOs(tenLatestValidCodeSnippets);
+        List<CodeSnippet> tenLatestCodeSnippets = getTenLatestCodeSnippets(filteredCodeSnippets);
+        return mapCodeSnippetsToViewDTOs(tenLatestCodeSnippets);
     }
 
     private boolean checkCodeSnippetTimeAndViews(CodeSnippet codeSnippet) {
@@ -67,16 +66,14 @@ public class CodeSharingViewServiceImpl implements CodeSharingViewService {
         repository.save(codeSnippet);
     }
 
-    private List<CodeSnippet> checkCodeSnippetsTimeAndViews(List<CodeSnippet> codeSnippets) {
-        List<CodeSnippet> validCodeSnippets = new ArrayList<>();
+    private List<CodeSnippet> filterCodeSnippets(List<CodeSnippet> codeSnippets) {
+        List<CodeSnippet> filteredCodeSnippets = new ArrayList<>();
         for (CodeSnippet codeSnippet : codeSnippets) {
-            updateViewsCount(codeSnippet);
-            codeSnippet.updateRemainingTimeAndViews();
-            if (!checkCodeSnippetTimeAndViews(codeSnippet)) {
-                validCodeSnippets.add(codeSnippet);
+            if (!codeSnippet.isRestricted()) {
+                filteredCodeSnippets.add(codeSnippet);
             }
         }
-        return validCodeSnippets;
+        return filteredCodeSnippets;
     }
 
     private List<CodeSnippet> getTenLatestCodeSnippets(List<CodeSnippet> allCodeSnippets) {
