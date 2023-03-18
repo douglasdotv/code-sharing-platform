@@ -41,12 +41,12 @@
 <span id="load_date" th:text="${codeSnippet.date}"></span>
 <br>
 <span th:if="${codeSnippet.isViewsRestricted}" th:id="views_restriction">
-        <u th:text="${codeSnippet.remainingViews}"></u> more views allowed.
+        <u th:text="${codeSnippet.views}"></u> more views allowed.
     </span>
 <br>
 <span th:if="${codeSnippet.isTimeRestricted}" th:id="time_restriction">
         The code will be available for
-        <u th:text="${codeSnippet.remainingTime}"></u> seconds.
+        <u th:text="${codeSnippet.time}"></u> seconds.
     </span>
 <pre id="code_snippet"><code th:text="${codeSnippet.code}"></code></pre>
 </body>

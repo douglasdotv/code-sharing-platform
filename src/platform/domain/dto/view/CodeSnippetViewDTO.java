@@ -6,8 +6,6 @@ public record CodeSnippetViewDTO(String code,
                                  String date,
                                  long time,
                                  long views,
-                                 long remainingTime,
-                                 long remainingViews,
                                  boolean isTimeRestricted,
                                  boolean isViewsRestricted) {
 
@@ -15,8 +13,6 @@ public record CodeSnippetViewDTO(String code,
         this(
                 codeSnippet.getCode(),
                 codeSnippet.getCreationDate(),
-                codeSnippet.getTime(),
-                codeSnippet.getViews(),
                 codeSnippet.getRemainingTime(),
                 codeSnippet.getRemainingViews(),
                 codeSnippet.isTimeRestricted(),
