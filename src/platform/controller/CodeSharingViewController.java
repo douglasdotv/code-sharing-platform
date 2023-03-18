@@ -47,7 +47,7 @@ public class CodeSharingViewController {
     @GetMapping("/code/new")
     public String getNewCode(Model model) {
         model.addAttribute("title", "Create");
-        return "newcode";
+        return "new";
     }
 
 }
