@@ -1,0 +1,8 @@
+.date-code-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    margin-bottom: 1rem;
+}
