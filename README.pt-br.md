@@ -52,7 +52,7 @@ Endpoints disponíveis:
 * highlight.js
 * Bootstrap
 
-### Objetivos de aprendizagem
+### Habilidades desenvolvidas durante o projeto
 * Como criar uma aplicação web usando Spring Boot e Spring MVC
 * Como interagir com o banco de dados usando Spring Data JPA
 * Como criar páginas web com Thymeleaf
@@ -60,7 +60,6 @@ Endpoints disponíveis:
 * Como usar o Bootstrap para estilizar páginas web
 
 ### Como rodar o projeto
-
 1. Certifique-se de ter o JDK (Java Development Kit) e o JRE (Java Runtime Environment) instalados no seu computador e de estar conectado à Internet.
 
 2. Abra o terminal e clone o repositório:
@@ -83,4 +82,4 @@ cd code-sharing-platform
    (Nota: o projeto está configurado para rodar na porta 8889 por padrão. Exemplo: http://localhost:8889/code/new.)
 
 ### Contato
-Em caso de dúvidas ou sugestões, sinta-se à vontade para entrar em contato comigo através do [LinkedIn](https://www.linkedin.com/in/douglasdotv/) ou via e-mail (douglas16722@gmail.com).
+Em caso de dúvidas ou sugestões, sinta-se à vontade para entrar em contato comigo através do [LinkedIn](https://www.linkedin.com/in/douglasdotv/) ou via email (douglas16722@gmail.com).
