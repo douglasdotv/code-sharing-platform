@@ -79,7 +79,8 @@ cd code-sharing-platform
 ```
 
 5. Acesse os endpoints da aplicação através do navegador ou de uma ferramenta como Postman ou Insomnia.
-   (Nota: o projeto está configurado para rodar na porta 8889 por padrão. Exemplo: http://localhost:8889/code/new.)
+   (O projeto está configurado para rodar na porta 8889 por padrão.)  
+   (Exemplo: http://localhost:8889/code/new)
 
 ### Contato
 Em caso de dúvidas ou sugestões, sinta-se à vontade para entrar em contato comigo através do [LinkedIn](https://www.linkedin.com/in/douglasdotv/) ou via email (douglas16722@gmail.com).

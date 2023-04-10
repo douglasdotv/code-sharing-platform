@@ -79,7 +79,8 @@ cd code-sharing-platform
 ```
 
 5. Access the application endpoints using a browser or a client like Postman or Insomnia.
-   (The application will run on port 8889 by default. Example: http://localhost:8889/code/new.)
+   (The application will run on port 8889 by default.)  
+   (Example: http://localhost:8889/code/new)
 
 ### Contact
 If you have any questions or suggestions, feel free to contact me via [LinkedIn](https://www.linkedin.com/in/douglasdotv/) or via email (douglas16722@gmail.com).
