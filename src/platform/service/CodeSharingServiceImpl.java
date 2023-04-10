@@ -1,6 +1,5 @@
 package platform.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import platform.domain.CodeSnippet;
 import platform.domain.dto.CodeSnippetDTO;
@@ -19,7 +18,6 @@ public class CodeSharingServiceImpl implements CodeSharingService {
 
     private final CodeSnippetRepository repository;
 
-    @Autowired
     public CodeSharingServiceImpl(CodeSnippetRepository repository) {
         this.repository = repository;
     }

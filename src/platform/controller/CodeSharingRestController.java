@@ -1,6 +1,5 @@
 package platform.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ public class CodeSharingRestController {
 
     private final CodeSharingService service;
 
-    @Autowired
     public CodeSharingRestController(CodeSharingService service) {
         this.service = service;
     }
